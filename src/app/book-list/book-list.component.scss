@@ -1,0 +1,41 @@
+table{
+  .sorting-column{
+    cursor: pointer;
+  }
+  tr{
+    &.unactive{
+      td:first-child, td:nth-child(2) {
+        opacity: .3;
+      }
+    }
+
+    td{
+      .btn{
+        margin: 0 10px;
+        padding: 4px 15px;
+      }
+    }
+  }
+}
+
+.controls-wr{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  .search-block{
+    position: relative;
+    display: inline-block;
+    input{
+      padding-right: 30px;
+    }
+    .fa{
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+
+

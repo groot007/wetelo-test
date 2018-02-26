@@ -1,0 +1,33 @@
+<div class="row">
+  <a routerLink="/list" class="btn btn-default"><i class="fa fa-long-arrow-left"></i> back to list</a>
+  <h3><span [hidden]="id">Adding book</span> <span [hidden]="!id">Editing book</span></h3>
+</div>
+<div class="row">
+  <div class="col-xs-5">
+    <form [formGroup]="form" (ngSubmit)="addBook(form.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input formControlName="title" type="text" class="form-control"  placeholder="Enter title" id="title">
+        <div class="alert alert-warning" [hidden]="form.controls['title'].valid || form.controls['title'].untouched">
+          Title can't be empty
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="desc">Password</label>
+        <textarea formControlName="description" row="10" class="form-control" id="desc" placeholder="Desciption for book"></textarea>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" formControlName="state" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1" >Active?</label>
+      </div>
+      <button type="submit" class="btn btn-primary"><span [hidden]="id">Add book</span><span [hidden]="!id">Save changes</span></button>
+    </form>
+  </div>
+</div>
+
+
+<div class="notification alert alert-success" [class.visible]="success">
+  <p [hidden]="id" >Book - <strong>"{{ bookTitle }}"</strong> added</p>
+  <p [hidden]="!id">Book - <strong>"{{ bookTitle }}"</strong> saved</p>
+</div>

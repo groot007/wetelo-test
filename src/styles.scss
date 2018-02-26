@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+.notification{
+  &.visible {
+    bottom: 10px;
+    transform: translateY(0);
+    animation-name: notification;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  margin: 0;
+  transform: translateY(100%);
+  transition: all .4s;
+}
+
+@keyframes notification {
+  0%{
+    box-shadow: 0 0 10px rgba(50, 50, 50, 0);
+  }
+
+  50%{
+    box-shadow: 0 0 20px rgba(50, 50, 50, .5);
+  }
+
+  100%{
+    box-shadow: 0 0 10px rgba(50, 50, 50, 0);
+  }
+}
+
+.pager-btns .pager{
+  margin: 0 0 20px 0;
+  li{
+    position: relative;
+    &:first-child{
+      &>a{
+        padding-left: 30px;
+      }
+      &:before{
+        content: '\f177';
+        font-family: "FontAwesome";
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+      }
+    }
+    &:last-child{
+      &>a{
+        padding-right: 30px;
+      }
+      &:before{
+        content: '\f178';
+        font-family: "FontAwesome";
+        display: inline-block;
+        transform: translateY(-50%);
+        position: absolute;
+        top: 50%;
+        right: 10px;
+      }
+    }
+  }
+}

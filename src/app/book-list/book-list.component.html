@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="controls-wr">
+    <div class="search-block">
+      <i class="fa fa-search"></i>
+      <input class="form-control" type="text" placeholder="Search book" [(ngModel)]="searchStr">
+    </div>
+    <a routerLink="/addBook" class="btn btn-primary">Add book</a>
+  </div>
+</div>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th (click)="sort(sortDirection)" class="sorting-column">
+        <i class="fa"
+           [ngClass]="{'fa-caret-down': sortDirection === 'desc', 'fa-caret-up': sortDirection === 'asc'}"></i>
+        Title
+      </th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody *ngIf="!searchStr.length">
+      <tr *ngFor="let book of bookList" [class.unactive]="!book.state">
+        <td>{{ book.title }}</td>
+        <td>{{ book.description }}</td>
+        <td width="25%">
+          <a [routerLink]="['/editBook', book.id]" class="btn btn-warning">Edit</a>
+          <button class="btn btn-danger" (click)="removeBook(book.id, book.title)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="searchStr.length">
+      <tr *ngFor="let book of allBooks | search:searchStr" [class.unactive]="!book.state">
+        <td>{{ book.title }}</td>
+        <td>{{ book.description }}</td>
+        <td width="25%">
+          <a [routerLink]="['/editBook', book.id]" class="btn btn-warning">Edit</a>
+          <button class="btn btn-danger" (click)="removeBook(book.id, book.title)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row text-center" *ngIf="!searchStr.length">
+  <pagination [totalItems]="bigTotalItems" [itemsPerPage]="itemsPerPage" [(ngModel)]="bigCurrentPage"
+              [maxSize]="maxSize" class="pagination-sm"
+              [boundaryLinks]="true" [directionLinks]="false" firstText="&laquo;" lastText="&raquo;" [rotate]="false"
+              (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+  <pager
+    [totalItems]="bigTotalItems"
+    [(ngModel)]="bigCurrentPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="Older" nextText="Newer"
+    [itemsPerPage]="itemsPerPage"
+    class="pager-btns">
+  </pager>
+</div>
+
+
+<div class="notification alert alert-danger" [class.visible]="success">
+  <p>Book - <strong>"{{ bookTitle }}"</strong> deleted</p>
+</div>
