@@ -4,7 +4,7 @@
       <i class="fa fa-search"></i>
       <input class="form-control" type="text" placeholder="Search book" [(ngModel)]="searchStr">
     </div>
-    <a routerLink="/addBook" class="btn btn-primary">Add book</a>
+    <a routerLink="/addBook" class="btn btn-success">Add book</a>
   </div>
 </div>
 <div class="row">
@@ -17,7 +17,7 @@
         Title
       </th>
       <th>Description</th>
-      <th>Action</th>
+      <th>Actions</th>
     </tr>
     </thead>
 
@@ -25,7 +25,7 @@
       <tr *ngFor="let book of bookList" [class.unactive]="!book.state">
         <td>{{ book.title }}</td>
         <td>{{ book.description }}</td>
-        <td width="25%">
+        <td width="25%" class="text-center">
           <a [routerLink]="['/editBook', book.id]" class="btn btn-warning">Edit</a>
           <button class="btn btn-danger" (click)="removeBook(book.id, book.title)">Delete</button>
         </td>

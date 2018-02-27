@@ -1,6 +1,19 @@
 table{
+  border: 1px solid #afafaf;
   .sorting-column{
     cursor: pointer;
+  }
+  thead{
+    tr{
+      background: #dadada;
+      th{
+        border-right: 1px solid #adadad;
+        border-bottom: 2px solid #adadad;
+        &:last-child{
+          border-right: none;
+        }
+      }
+    }
   }
   tr{
     &.unactive{
@@ -10,9 +23,14 @@ table{
     }
 
     td{
+      border-right: 1px solid #ddd;
+      &:last-child{
+        border-right: none;
+      }
       .btn{
         margin: 0 10px;
         padding: 4px 15px;
+        min-width: 75px;
       }
     }
   }
